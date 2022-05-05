@@ -14,11 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name');
+            $table->string('nome');
+            $table->string('cpf')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('cargo');
+            $table->string('nascimento');
+            $table->string('cep');
+            $table->string('endereco');
+            $table->integer('nivel');
             $table->rememberToken();
             $table->timestamps();
         });
