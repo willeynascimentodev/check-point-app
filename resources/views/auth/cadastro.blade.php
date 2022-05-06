@@ -35,6 +35,12 @@
                                     <form class="user" action="{{ route('cadastrar') }}" method="post">
                                         @csrf
                                         <div class="form-group">
+                                            @if ($errors->has('password'))
+                                                <strong class='text-danger'>{{ $errors->first('password') }}</strong>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
                                                 minlength="6" maxlength="191" id="nome" name="nome" value="{{ old('nome') }}"
                                                 placeholder="Digite seu nome...">
@@ -85,7 +91,7 @@
 
                                         <div class="form-group">
                                             <input required type="password" class="form-control form-control-user"
-                                                minlength="6" maxlength="191" id="confirm-password" name="confirm-password" placeholder="Digite sua senha novamente...">
+                                                minlength="6" maxlength="191" id="password_confirmation" name="password_confirmation" placeholder="Digite sua senha novamente...">
                                         </div>
 
                                         <button class="btn btn-primary btn-user btn-block">

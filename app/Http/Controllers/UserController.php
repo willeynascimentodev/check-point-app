@@ -21,6 +21,14 @@ class UserController extends Controller
     }
 
     public function cadastrar(Request $req) {
+
+        $req->validate([
+            'password_confirmation' => 'required|min:6',
+            'password' => 'required|confirmed|min:6',
+        ], [
+            'password.confirmed' => 'Senhas não conferem.'
+        ]);
+
         $dados = $req->all();
         
         $cpf = $req->cpf;
