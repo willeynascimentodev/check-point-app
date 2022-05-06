@@ -21,6 +21,6 @@ Route::get('/', function () {
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
 Route::get('/cadastro', [UserController::class, 'cadastro'])->name('cadastro');
-Route::get('/cadastrar', [UserController::class, 'cadastrar'])->name('cadastrar');
+Route::post('/cadastrar', [UserController::class, 'cadastrar'])->name('cadastrar');
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cpf;
 
 class UserController extends Controller
 {
@@ -19,7 +20,13 @@ class UserController extends Controller
         return view('auth.cadastro');
     }
 
-    public function cadastrar() {
-        dd('Cadastrar');
+    public function cadastrar(Request $req) {
+        $dados = $req->all();
+        
+        $cpf = $req->cpf;
+        $cpfObj = new Cpf();
+        dd($cpfObj->validarCpf($cpf));
+
     }
+
 }
