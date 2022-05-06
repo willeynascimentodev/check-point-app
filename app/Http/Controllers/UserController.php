@@ -14,4 +14,12 @@ class UserController extends Controller
     public function auth() {
         dd('Auth');
     }
+
+    public function cadastro() {
+        return view('auth.cadastro');
+    }
+
+    public function cadastrar() {
+        dd('Cadastrar');
+    }
 }

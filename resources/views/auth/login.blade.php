@@ -49,7 +49,7 @@
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Cadastre-se como um gestor!</a>
+                                        <a class="small" href="{{ route('cadastro') }}">Cadastre-se como um gestor!</a>
                                     </div>
                                 </div>
                             </div>
