@@ -7,15 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cpf
 {
-    
+
 
     public function validarCpf ($cpf) {
 
-
-        //apenas números
-        $cpf = str_replace("-", "", $cpf);
-        $cpf = str_replace(".", "", $cpf);
-
+        $cpf = str_replace(['.', '-'], ['', ''], $cpf);
 
         //Validando tamanho, se não possui todos repetidos e se possui apenas digitos númericos.
         if (strlen($cpf) != 11 || preg_match('/([0-9])\1{10}/', $cpf) || !ctype_digit($cpf)) {

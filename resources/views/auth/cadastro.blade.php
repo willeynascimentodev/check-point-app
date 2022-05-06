@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Controle de Ponto Ticto - Cadastro</title>
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href={{ asset("vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -36,55 +36,56 @@
                                         @csrf
                                         <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
-                                                id="nome" name="nome" value="{{ old('nome') }} "
+                                                minlength="6" maxlength="191" id="nome" name="nome" value="{{ old('nome') }}"
                                                 placeholder="Digite seu nome...">
                                                 
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control cpf form-control-user"
-                                                id="cpf" name="cpf" value="{{ old('cpf') }} "
+                                            minlength="14" maxlength="14" id="cpf" name="cpf" value="{{ old('cpf') }}"
                                                 placeholder="Digite seu cpf...">
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="email" class="form-control form-control-user"
-                                                id="email" name="email" value="{{ old('email') }} "
+                                                minlength="6" maxlength="191" id="email" name="email" value="{{ old('email') }}"
                                                 placeholder="Digite seu e-mail...">
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="date" class="form-control form-control-user"
-                                                id="data" name="nascimento" value="{{ old('nascimento') }} "
+                                                minlength="6" maxlength="191" id="data" name="nascimento" value="{{ old('nascimento') }}"
                                                 placeholder="Digite seu nascimento...">
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
-                                                id="cep" name="cep" value="{{ old('cep') }} "
+                                                minlength="6" maxlength="10" id="cep" name="cep" value="{{ old('cep') }}"
                                                 placeholder="Digite seu CEP...">
+                                                <small id="alert-cep" style="color: red;"></small>
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
-                                                id="endereco" name="endereco" value="{{ old('endereco') }} "
+                                                minlength="6" maxlength="191"  id="endereco" name="endereco" value="{{ old('endereco') }}"
                                                 placeholder="Preenchido automaticamente...">
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
-                                                id="numero" name="numero" value="{{ old('numero') }} "
+                                                minlength="1" maxlength="10" id="numero" name="numero" value="{{ old('numero') }}"
                                                 placeholder="Número...">
                                         </div>
                                         
                                         <div class="form-group">
                                             <input required type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Digite sua senha...">
+                                                minlength="6" maxlength="191" id="password" name="password" placeholder="Digite sua senha...">
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="password" class="form-control form-control-user"
-                                                id="confirm-password" name="confirm-password" placeholder="Digite sua senha novamente...">
+                                                minlength="6" maxlength="191" id="confirm-password" name="confirm-password" placeholder="Digite sua senha novamente...">
                                         </div>
 
                                         <button class="btn btn-primary btn-user btn-block">
@@ -104,19 +105,25 @@
 
     </div>
 
+    <script src={{ asset("vendor/jquery/jquery.min.js") }} ></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src={{ asset("vendor/bootstrap/js/bootstrap.bundle.min.js") }}></script>
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src={{ asset("vendor/jquery-easing/jquery.easing.min.js") }}></script>
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src={{ asset("js/sb-admin-2.min.js") }}></script>
     <!-- Biblioteca para máscaras JS -->
+    <!-- Script de validação do CEP -->
+    <script src={{ asset("js/cep.js") }}></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
     <script type="text/javascript">
         $(".cpf").mask("000.000.000-25");
     </script>
+    
+    
+
 
 </body>
 
