@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('nascimento');
             $table->string('cep');
             $table->string('endereco');
+            $table->integer('numero');
             $table->integer('nivel');
             $table->rememberToken();
             $table->timestamps();
