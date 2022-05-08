@@ -113,7 +113,7 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('senha') }}">
                     <i class="fas fa-fw fa-key"></i>
                     <span>Alterar Senha</span></a>
             </li>

@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 
-@section('titulo', 'Home')
+@section('titulo', 'Perfil')
 
 @section('conteudo')
 
@@ -15,6 +15,14 @@
         <div class="card-body text-center">
             <form class="user" action="{{ route('alterar.perfil') }}" method="post">
                 @csrf
+
+                <div class="form-group">
+                    @if (session('status'))
+                        <small style="color: green;">
+                            {{ session('status') }}
+                        </small>
+                    @endif
+                </div>
 
                 <div class="form-group">
                     <input required type="text" class="form-control form-control-user"
@@ -38,10 +46,10 @@
                         minlength="6" maxlength="191" id="email" name="email" value="{{ old('email', $user->email) }}"
                         placeholder="Digite seu e-mail...">
                         @if ($errors->has('email'))
-                        <small style="color: red;">
-                            {{ $errors->first('email') }}
-                        </small>
-                    @endif
+                            <small style="color: red;">
+                                {{ $errors->first('email') }}
+                            </small>
+                        @endif
                 </div>
 
                 <div class="form-group">

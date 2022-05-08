@@ -32,8 +32,12 @@ Route::get('/sair', [UserController::class, 'sair'])->name('sair');
 Route::get('/gestor/home', [GestorUserController::class, 'home'])->name('gestor.home')->middleware('auth.gestor');
 Route::get('/funcionario/home', [FuncionarioUserController::class, 'home'])->name('funcionario.home')->middleware('auth.funcionario');
 
-Route::get('/perfil', [UserController::class, 'editarPerfil'])->name('perfil')->middleware('auth');
+Route::get('/senha', [UserController::class, 'editarSenha'])->name('senha')->middleware('auth');
+Route::post('/alterarSenha', [UserController::class, 'alterarSenha'])->name('alterar.senha')->middleware('auth');
 
-Route::post('/editarPerfil', [UserController::class, 'alterarRegistro'])->name('alterar.perfil')->middleware('auth');
+Route::get('/perfil', [UserController::class, 'editarPerfil'])->name('perfil')->middleware('auth');
+Route::post('/editarRegistro', [UserController::class, 'alterarRegistro'])->name('alterar.perfil')->middleware('auth');
+
+
 
 

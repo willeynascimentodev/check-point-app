@@ -68,6 +68,27 @@ class UserController extends Controller
         return redirect()->route('login')->with('status', 'Dados incorretos.');
     }
 
+    public function editarSenha(){
+        return view('senha');
+    }
+
+    public function alterarSenha(Request $req) {
+        $req->validate([
+            'password_confirmation' => 'min:6',
+            'password' => 'confirmed|min:6',
+        ], [
+            'password.confirmed' => 'Senhas não conferem.',
+        ]);
+
+        $dados['password'] = Hash::make($req->password);
+        
+        $user = User::find(Auth::user()->id);
+        $user->update($dados);
+
+        return redirect()->back()->with('status', 'Alterado com sucesso.');
+    }
+
+
     public function editarPerfil(){
         $user = User::find(Auth::user()->id);
         return view('perfil', compact('user'));
@@ -83,11 +104,10 @@ class UserController extends Controller
             'cpf.validar_cpf' => 'CPF Inválido.',
             'email.unique' => 'Email já cadastrado.',
         ]);
-        
 
         $user = User::find(Auth::user()->id);
         $user->update($req->all());
-        $user->save();
+
         return redirect()->back()->with('status', 'Alterado com sucesso.');
     }
 
