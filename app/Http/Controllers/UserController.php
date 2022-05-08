@@ -15,8 +15,8 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function auth() {
-        dd('Auth');
+    public function auth(Request $req) {
+        return $this->redirecionarLogin($this->efetuarLogin($req));
     }
 
     public function cadastro() {
@@ -36,14 +36,6 @@ class UserController extends Controller
             'cpf.unique' => 'CPF já cadastrado.',
             'cpf.validar_cpf' => 'CPF Inválido.',
         ]);
-
-        
-        // $cpf = $req->cpf;
-        // $cpfObj = new Cpf();
-        
-        // if (!$cpfObj->validarCpf($cpf)) {
-        //     return redirect()->back()->withErrors('cpf', 'CPF Inválido.');
-        // }
         
         $dados = $req->all();
         $dados['cargo'] = "Gestor";
@@ -51,7 +43,7 @@ class UserController extends Controller
         $dados['password'] = Hash::make($dados['password']);
         User::create($dados);
 
-        $this->efetuarLogin($req);
+        return $this->redirecionarLogin($this->efetuarLogin($req));
 
     }
 
@@ -61,9 +53,21 @@ class UserController extends Controller
             'email' => $req->email, 
             'password' => $req->password,  
         ])) {
-            $req->session()->regenerate();
-        }
-        dd(Auth::user());
+            return true;    
+        } 
+        return false;
     }
+
+    public function redirecionarLogin($resposta){
+        
+        if ($resposta && Auth::user()->nivel == 2) {
+            return redirect()->route('gestor.home');
+        } else if ($resposta && Auth::user()->nivel == 1) {
+            return redirect()->route('funcionario.home');
+        }
+        return redirect()->route('login')->with('status', 'Dados incorretos');
+    }
+
+    
 
 }

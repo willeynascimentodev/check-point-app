@@ -36,12 +36,12 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="email" name="email"  aria-describedby="emailHelp"
                                                 placeholder="Digite seu e-mail...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Digite sua senha...">
+                                                id="password" name="password" placeholder="Digite sua senha...">
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block">
                                             Login
