@@ -43,6 +43,13 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Digite sua senha...">
                                         </div>
+                                        <div class="form-group">
+                                            @if(session('status'))
+                                                <small style="color: red;">
+                                                    {{ session('status') }}
+                                                </small>
+                                            @endif
+                                        </div>
                                         <button class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>

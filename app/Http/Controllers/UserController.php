@@ -65,9 +65,35 @@ class UserController extends Controller
         } else if ($resposta && Auth::user()->nivel == 1) {
             return redirect()->route('funcionario.home');
         }
-        return redirect()->route('login')->with('status', 'Dados incorretos');
+        return redirect()->route('login')->with('status', 'Dados incorretos.');
     }
 
-    
+    public function editarPerfil(){
+        $user = User::find(Auth::user()->id);
+        return view('perfil', compact('user'));
+    }
+
+    public function alterarRegistro(Request $req) {
+        
+        $req->validate([
+            'cpf' => 'required|validar_cpf|unique:users,email,'.Auth::user()->id,
+            'email' => 'required|unique:users,email,'.Auth::user()->id,
+        ], [
+            'cpf.unique' => 'CPF já cadastrado.',
+            'cpf.validar_cpf' => 'CPF Inválido.',
+            'email.unique' => 'Email já cadastrado.',
+        ]);
+        
+
+        $user = User::find(Auth::user()->id);
+        $user->update($req->all());
+        $user->save();
+        return redirect()->back()->with('status', 'Alterado com sucesso.');
+    }
+
+    public function sair(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
 
 }

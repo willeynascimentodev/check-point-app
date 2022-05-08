@@ -20,14 +20,20 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/auth', [UserController::class, 'auth'])->name('auth');
 Route::get('/cadastro', [UserController::class, 'cadastro'])->name('cadastro');
 Route::post('/cadastrar', [UserController::class, 'cadastrar'])->name('cadastrar');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/auth', [UserController::class, 'auth'])->name('auth');
+
+Route::get('/sair', [UserController::class, 'sair'])->name('sair');
 
 
 
 Route::get('/gestor/home', [GestorUserController::class, 'home'])->name('gestor.home')->middleware('auth.gestor');
 Route::get('/funcionario/home', [FuncionarioUserController::class, 'home'])->name('funcionario.home')->middleware('auth.funcionario');
+
+Route::get('/perfil', [UserController::class, 'editarPerfil'])->name('perfil')->middleware('auth');
+
+Route::post('/editarPerfil', [UserController::class, 'alterarRegistro'])->name('alterar.perfil')->middleware('auth');
 
 
