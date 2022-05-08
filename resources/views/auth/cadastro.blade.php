@@ -34,29 +34,33 @@
                                     </div>
                                     <form class="user" action="{{ route('cadastrar') }}" method="post">
                                         @csrf
-                                        <div class="form-group">
-                                            @if ($errors->has('password'))
-                                                <strong class='text-danger'>{{ $errors->first('password') }}</strong>
-                                            @endif
-                                        </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control form-control-user"
                                                 minlength="6" maxlength="191" id="nome" name="nome" value="{{ old('nome') }}"
                                                 placeholder="Digite seu nome...">
-                                                
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="text" class="form-control cpf form-control-user"
                                             minlength="14" maxlength="14" id="cpf" name="cpf" value="{{ old('cpf') }}"
                                                 placeholder="Digite seu cpf...">
+                                                @if ($errors->has('cpf'))
+                                                    <small style="color: red;">
+                                                        {{ $errors->first('cpf') }}
+                                                    </small>
+                                                @endif
                                         </div>
 
                                         <div class="form-group">
                                             <input required type="email" class="form-control form-control-user"
                                                 minlength="6" maxlength="191" id="email" name="email" value="{{ old('email') }}"
                                                 placeholder="Digite seu e-mail...">
+                                                @if ($errors->has('email'))
+                                                <small style="color: red;">
+                                                    {{ $errors->first('email') }}
+                                                </small>
+                                            @endif
                                         </div>
 
                                         <div class="form-group">
@@ -92,6 +96,11 @@
                                         <div class="form-group">
                                             <input required type="password" class="form-control form-control-user"
                                                 minlength="6" maxlength="191" id="password_confirmation" name="password_confirmation" placeholder="Digite sua senha novamente...">
+                                                @if ($errors->has('password'))
+                                                    <small style="color: red;">
+                                                        {{ $errors->first('password') }}
+                                                    </small>
+                                                @endif
                                         </div>
 
                                         <button class="btn btn-primary btn-user btn-block">
@@ -99,6 +108,9 @@
                                         </button>
                                         <hr>
                                     </form>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('login') }}">Faça login!</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +137,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
     <script type="text/javascript">
-        $(".cpf").mask("000.000.000-25");
+        $(".cpf").mask("000.000.000-00");
     </script>
     
     

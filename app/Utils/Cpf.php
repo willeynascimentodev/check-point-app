@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+namespace App\Utils;
 
 class Cpf
 {
 
+    public function validarCpf ($attribute, $value) {
 
-    public function validarCpf ($cpf) {
-
+        $cpf = $value;
         $cpf = str_replace(['.', '-'], ['', ''], $cpf);
 
         //Validando tamanho, se não possui todos repetidos e se possui apenas digitos númericos.
