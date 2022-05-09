@@ -17,9 +17,9 @@ class FuncionarioMiddleware
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->to('/login');
+            return redirect()->to('/');
         } else if ($request->user()->nivel != 1) {
-            return redirect()->to('/login');
+            return redirect()->to('/');
         }
         return $next($request);
     }

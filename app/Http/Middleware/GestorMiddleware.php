@@ -17,9 +17,9 @@ class GestorMiddleware
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->to('/login');
+            return redirect()->to('/');
         } else if ($request->user()->nivel != 2) {
-            return redirect()->to('/login');
+            return redirect()->to('/');
         }
         return $next($request);
     }
