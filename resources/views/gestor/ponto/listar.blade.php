@@ -13,13 +13,22 @@
             <h6 class="m-0 font-weight-bold text-primary">Lista de pontos</h6>
         </div>
         <div class="card-body">
-            @if(session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
+            <div class="form-row col-sm-12 col-md-12">
+                <form action="{{ route('gestor.pontos') }}">
+                    <div class="form-group col-sm-12">
+                        <label>Data mínima</label>
+                        <input required type="date" id="dataMin" name="dataMin" class="form-control" value="{{ @$data['dataMin'] }}">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label>Data máxima</label>
+                        <input type="date" id="dataMax" name="dataMax" class="form-control" value="{{ @$data['dataMax'] }}">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="submit" class='form-control' value="Pesquisar">
+                    </div> 
+                </form>
+            </div>
             <div class="table-responsive">
-       
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -65,9 +74,6 @@
 
 </div>
 <!-- /.container-fluid -->
-@push('js')
 
-@endpush
 
-    
 @endsection

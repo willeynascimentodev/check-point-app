@@ -27,9 +27,26 @@ class PontoController extends Controller
         return redirect()->route('funcionario.home')->with('status', 'Ponto registrado com sucesso.');
     }
 
-    public function registros() {
+    public function registros(Request $req) {
+
         $ponto = new Ponto();
-        $registros = $ponto->buscarPontos();
-        return view('gestor.ponto.listar', compact('registros'));
+
+        if(isset($req->dataMin)) {    
+            $dataMin = $req->dataMin;
+            $dataMax = $req->dataMax;
+
+            if ($dataMax <= $dataMin || $dataMax == null) {
+                $dataMax = date('Y-m-d', strtotime('+1 day', strtotime($dataMin)));
+            }
+            
+            $data['dataMin'] = $dataMin;
+            $data['dataMax'] = $dataMax;
+
+            $registros = $ponto->buscarPontosData($dataMin, $dataMax);    
+            return view('gestor.ponto.listar', compact('registros', 'data') );
+        } else {
+            $registros = $ponto->buscarPontos();
+            return view('gestor.ponto.listar', compact('registros'));
+        }
     }
 }
