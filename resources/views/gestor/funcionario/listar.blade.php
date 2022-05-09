@@ -63,10 +63,10 @@
                                 </a>
                             </td>
                             <td>  
-                                <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-delete-{{ $f->id }}" href="#">
+                                <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-delete-soft-{{ $f->id }}" href="#">
                                     <i class="fa fa-trash"></i>
                                 </a>
-                                <form method="post" id="form-delete-{{ $f->id }}" action="{{ route('funcionarios.destroy', ['funcionario' => $f->id]) }}">
+                                <form method="post" id="form-delete-soft-{{ $f->id }}" action="{{ route('funcionarios.destroy', ['funcionario' => $f->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                 </form>

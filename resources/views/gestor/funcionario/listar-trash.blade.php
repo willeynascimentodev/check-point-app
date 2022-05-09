@@ -10,7 +10,7 @@
     <!-- Page Heading -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Lista de funcionários</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Lista de funcionários excluídos</h6>
         </div>
         <div class="card-body">
             @if(session('status'))
@@ -67,10 +67,10 @@
                                 </form>
                             </td>
                             <td>  
-                                <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-delete-{{ $f->id }}" href="#">
+                                <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-delete-hard-{{ $f->id }}" href="#">
                                     <i class="fa fa-trash"></i>
                                 </a>
-                                <form method="post" id="form-delete-{{ $f->id }}" action="{{ route('funcionarios.force.destroy', ['funcionario' => $f->id]) }}">
+                                <form method="post" id="form-delete-hard-{{ $f->id }}" action="{{ route('funcionarios.force.destroy', ['funcionario' => $f->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                 </form>
