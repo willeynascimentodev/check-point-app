@@ -38,6 +38,11 @@ Route::post('/alterarSenha', [UserController::class, 'alterarSenha'])->name('alt
 Route::get('/perfil', [UserController::class, 'editarPerfil'])->name('perfil')->middleware('auth');
 Route::post('/editarRegistro', [UserController::class, 'alterarRegistro'])->name('alterar.perfil')->middleware('auth');
 
+Route::resource('/funcionarios', FuncionarioUserController::class)->names('funcionarios')->middleware('auth.gestor');
+Route::get('/registros-apagados', [FuncionarioUserController::class, 'indexTrash'])->name('funcionarios.trash')->middleware('auth.gestor');
+Route::delete('/apagar-registro/{funcionario}', [FuncionarioUserController::class, 'forceDestroy'])->name('funcionarios.force.destroy')->middleware('auth.gestor');
+Route::put('/apagar-registro/{funcionario}', [FuncionarioUserController::class, 'restoreTrashed'])->name('funcionarios.restore')->middleware('auth.gestor');
+
 
 
 

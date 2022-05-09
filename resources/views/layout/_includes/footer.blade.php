@@ -17,6 +17,14 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        $(".cpf").mask("000.000.000-00");
+    </script>
+
+    @stack('js')
+
 </body>
 
 </html>

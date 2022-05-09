@@ -44,7 +44,7 @@
                             <th>CPF</th>
                             <th>Email</th>
                             <th>Cargo</th>
-                            <th>Editar</th>
+                            <th>Restaurar</th>
                             <th>Excluir</th>
                         </tr>
                     </tfoot>
@@ -52,21 +52,25 @@
 
                         @foreach($funcionarios as $f)
                         <tr>
-                            <td>{{ $f->user->id }}</td>
-                            <td>{{ $f->user->nome }}</td>
-                            <td>{{ $f->user->cpf }}</td>
-                            <td>{{ $f->user->email }}</td>
-                            <td>{{ $f->user->cargo }}</td>
+                            <td>{{ $f->userTrashed()->id }}</td>
+                            <td>{{ $f->userTrashed()->nome }}</td>
+                            <td>{{ $f->userTrashed()->cpf }}</td>
+                            <td>{{ $f->userTrashed()->email }}</td>
+                            <td>{{ $f->userTrashed()->cargo }}</td>
                             <td>  
-                                <a href="{{ route('funcionarios.edit', $f->user->id) }}">
-                                    <i class="fa fa-pen"></i>
+                                <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-restore-{{ $f->id }}" href="#">
+                                    <i class="fa fa-recycle"></i>
                                 </a>
+                                <form method="post" id="form-restore-{{ $f->id }}" action="{{ route('funcionarios.restore', ['funcionario' => $f->id]) }}">
+                                    @csrf
+                                    @method('PUT')
+                                </form>
                             </td>
                             <td>  
                                 <a name="btn-action" id="btn-action-{{ $f->id }}" data-item-id="form-delete-{{ $f->id }}" href="#">
                                     <i class="fa fa-trash"></i>
                                 </a>
-                                <form method="post" id="form-delete-{{ $f->id }}" action="{{ route('funcionarios.destroy', ['funcionario' => $f->id]) }}">
+                                <form method="post" id="form-delete-{{ $f->id }}" action="{{ route('funcionarios.force.destroy', ['funcionario' => $f->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                 </form>

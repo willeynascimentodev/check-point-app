@@ -97,7 +97,7 @@ class UserController extends Controller
     public function alterarRegistro(Request $req) {
         
         $req->validate([
-            'cpf' => 'required|validar_cpf|unique:users,email,'.Auth::user()->id,
+            'cpf' => 'required|validar_cpf|unique:users,cpf,'.Auth::user()->id,
             'email' => 'required|unique:users,email,'.Auth::user()->id,
         ], [
             'cpf.unique' => 'CPF já cadastrado.',

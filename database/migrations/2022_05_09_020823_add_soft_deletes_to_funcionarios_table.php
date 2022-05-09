@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pontos', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->id();
-            $table->string('tipo');
-            $table->unsignedBigInteger('funcionario_id');
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios')->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('funcionarios', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pontos');
+        Schema::table('funcionarios', function (Blueprint $table) {
+            //
+        });
     }
 };

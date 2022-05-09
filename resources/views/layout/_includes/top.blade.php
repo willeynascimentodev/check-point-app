@@ -67,8 +67,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Criar</a>
-                        <a class="collapse-item" href="#">Listar</a>
+                        <a class="collapse-item" href="{{ route('funcionarios.create') }}">Criar</a>
+                        <a class="collapse-item" href="{{ route('funcionarios.index') }}">Listar</a>
                     </div>
                 </div>
             </li>
@@ -83,7 +83,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Listar</a>
+                        <a class="collapse-item" href="{{ route('funcionarios.trash') }}">Listar</a>
                     </div>
                 </div>
             </li>

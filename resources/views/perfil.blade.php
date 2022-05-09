@@ -15,7 +15,6 @@
         <div class="card-body text-center">
             <form class="user" action="{{ route('alterar.perfil') }}" method="post">
                 @csrf
-
                 <div class="form-group">
                     @if (session('status'))
                         <small style="color: green;">
