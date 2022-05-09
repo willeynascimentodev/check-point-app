@@ -50,7 +50,7 @@
                 @if(Auth::user()->nivel == 2)
                     <a class="nav-link" href="{{ route('gestor.home') }}">
                         <i class="fas fa-fw fa fa-home"></i>
-                        <span>Registar Ponto</span></a>
+                        <span>Home</span></a>
                 @elseif(Auth::user()->nivel == 1)
                     <a class="nav-link" href={{ route('funcionario.home') }}>
                         <i class="fas fa-fw fa fa-list"></i>

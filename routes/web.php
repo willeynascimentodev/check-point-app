@@ -17,13 +17,9 @@ use App\Http\Controllers\Funcionario\PontoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
 Route::get('/cadastro', [UserController::class, 'cadastro'])->name('cadastro');
 Route::post('/cadastrar', [UserController::class, 'cadastrar'])->name('cadastrar');
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/', [UserController::class, 'login'])->name('login');
 Route::post('/auth', [UserController::class, 'auth'])->name('auth');
 
 Route::get('/sair', [UserController::class, 'sair'])->name('sair');
