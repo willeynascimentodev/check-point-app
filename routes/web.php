@@ -42,6 +42,8 @@ Route::put('/apagar-registro/{funcionario}', [FuncionarioUserController::class, 
 
 Route::resource('/pontos', PontoController::class)->names('pontos')->middleware('auth.funcionario');
 
+Route::get('/registros-de-pontos', [PontoController::class, 'registros'])->name('gestor.pontos')->middleware('auth.gestor');
+
 
 
 

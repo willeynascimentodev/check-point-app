@@ -25,6 +25,11 @@ class PontoController extends Controller
         $funcionario->pontos()->create($dados);
 
         return redirect()->route('funcionario.home')->with('status', 'Ponto registrado com sucesso.');
+    }
 
+    public function registros() {
+        $ponto = new Ponto();
+        $registros = $ponto->buscarPontos();
+        return view('gestor.ponto.listar', compact('registros'));
     }
 }

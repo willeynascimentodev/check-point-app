@@ -7,7 +7,7 @@ $(document).on('click', "[name='btn-action']", function(e){
     if(id.includes('soft')) {
         text = 'Tem certeza que deseja excluir?';
     } else if(id.includes('hard')) {
-        text = 'O registro será apagado permanentemente. Tem certeza?';
+        text = 'Todas as informações relacionadas a este usuário serão excluídas permanentemente. Tem certeza?';
     } else if(id.includes('restore')) {
         text = 'Deseja restaurar?';
     }
