@@ -12,11 +12,15 @@ class PontoController extends Controller
 {
     public function store(Request $req) {
         $ponto = new Ponto();
-        $ultimoPonto = $ponto->ultimaEntrada()->tipo;
+        if($ponto->ultimaEntrada()) {
+            $ultimoPonto = $ponto->ultimaEntrada()->tipo;
+        } else {
+            $ultimoPonto = null;
+        }
 
         $funcionario = User::find(Auth::user()->id)->funcionario;
 
-        if(strcmp($ultimoPonto, 'entrada') == 0) {
+        if(strcmp($ultimoPonto, 'entrada') == 0 && $ultimoPonto != null) {
             $dados['tipo'] = 'saida';
         } else if(strcmp($ultimoPonto, 'saida') == 0 || $ultimoPonto === null) {
             $dados['tipo'] = 'entrada';
