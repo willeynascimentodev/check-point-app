@@ -56,7 +56,7 @@
 
                         @foreach($funcionarios as $f)
                         <tr>
-                            <td>{{ $f->user->id }}</td>
+                            <td>{{ $f->id }}</td>
                             <td>{{ $f->user->nome }}</td>
                             <td>{{ $f->user->cpf }}</td>
                             <td>{{ $f->user->email }}</td>
