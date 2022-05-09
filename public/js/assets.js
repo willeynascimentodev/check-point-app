@@ -1,12 +1,34 @@
 $(document).on('click', "[name='btn-action']", function(e){
     e.preventDefault();
     var id = $(this).data('item-id');
+    
+    var text = '';
 
-    if(id.includes('soft') && window.confirm('Tem certeza que deseja excluir?')) {
-        $("#"+id).submit();
-    } else if(id.includes('hard') && window.confirm('Se você excluir, não poderá recuperar. Tem certeza?')) {
-        $("#"+id).submit();
-    } else if (!id.includes('delete')) {
-        $("#"+id).submit();
+    if(id.includes('soft')) {
+        text = 'Tem certeza que deseja excluir?';
+    } else if(id.includes('hard')) {
+        text = 'O registro será apagado permanentemente. Tem certeza?';
+    } else if(id.includes('restore')) {
+        text = 'Deseja restaurar?';
     }
+
+    Swal.fire({
+        title: text,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Sim',
+        denyButtonText: 'Não',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $("#"+id).submit();
+        }
+    })
+
+  
+
+
 });
+
+
+
+
