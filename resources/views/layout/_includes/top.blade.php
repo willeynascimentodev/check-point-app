@@ -47,48 +47,60 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa fa-home"></i>
-                    <span>Home</span></a>
+                @if(Auth::user()->nivel == 2)
+                    <a class="nav-link" href="{{ route('gestor.home') }}">
+                        <i class="fas fa-fw fa fa-home"></i>
+                        <span>Registar Ponto</span></a>
+                @elseif(Auth::user()->nivel == 1)
+                    <a class="nav-link" href={{ route('funcionario.home') }}>
+                        <i class="fas fa-fw fa fa-list"></i>
+                        <span>Registar Ponto</span></a>
+                @endif
+                
+                </a>            
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Navegação
-            </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionários</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('funcionarios.create') }}">Criar</a>
-                        <a class="collapse-item" href="{{ route('funcionarios.index') }}">Listar</a>
-                    </div>
-                </div>
-            </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-trash"></i>
-                    <span>Funcionários Excluídos</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('funcionarios.trash') }}">Listar</a>
-                    </div>
+            @if(Auth::user()->nivel == 2)
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Navegação
                 </div>
-            </li>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Funcionários</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('funcionarios.create') }}">Criar</a>
+                            <a class="collapse-item" href="{{ route('funcionarios.index') }}">Listar</a>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                        aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-trash"></i>
+                        <span>Funcionários Excluídos</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('funcionarios.trash') }}">Listar</a>
+                        </div>
+                    </div>
+                </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">

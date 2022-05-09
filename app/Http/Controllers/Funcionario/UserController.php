@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Funcionario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Ponto;
 use App\Models\Funcionario;
 use Auth;
+use Hash;
 
 class UserController extends Controller
 {
     public function home() {
-        return view('funcionario.home');
+        $ponto = new Ponto();
+
+        $ultimoPonto = $ponto->ultimaEntrada();
+        return view('funcionario.home', compact('ultimoPonto'));
     }
     
     public function index(Request $req) {   
@@ -50,7 +55,7 @@ class UserController extends Controller
         $dados = $req->except('_token');
         $dados['nivel'] = 1;
         $dados['user_gestor_id'] = Auth::user()->id;
-        
+        $dados['password'] = Hash::make($dados['password']);
         $user = User::Create($dados);
         $user->funcionario()->create(['user_gestor_id' => $dados['user_gestor_id']]);
         return redirect()->route('funcionarios.index')->with('status', 'Funcionário adicionado.');

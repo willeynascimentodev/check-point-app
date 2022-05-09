@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Gestor\UserController as GestorUserController;
 use App\Http\Controllers\Funcionario\UserController as FuncionarioUserController;
+use App\Http\Controllers\Funcionario\PontoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::resource('/funcionarios', FuncionarioUserController::class)->names('funci
 Route::get('/registros-apagados', [FuncionarioUserController::class, 'indexTrash'])->name('funcionarios.trash')->middleware('auth.gestor');
 Route::delete('/apagar-registro/{funcionario}', [FuncionarioUserController::class, 'forceDestroy'])->name('funcionarios.force.destroy')->middleware('auth.gestor');
 Route::put('/apagar-registro/{funcionario}', [FuncionarioUserController::class, 'restoreTrashed'])->name('funcionarios.restore')->middleware('auth.gestor');
+
+Route::resource('/pontos', PontoController::class)->names('pontos')->middleware('auth.funcionario');
 
 
 
